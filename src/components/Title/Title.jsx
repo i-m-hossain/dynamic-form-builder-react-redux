@@ -7,14 +7,14 @@ const Title = () => {
             <input
                 type="text"
                 placeholder="Step Name"
-                className="outline-none border-b-2 p-2 rounded-sm"
+                className="outline-none border-b-2 border-gray-200 p-2 rounded-sm"
             />
             <textarea
                 name=""
                 id=""
                 cols="20"
                 rows="3"
-                className="outline-none border-b-2 p-2 rounded-sm"
+                className="outline-none border-b-2 border-gray-200 p-2 rounded-sm"
                 placeholder="Description"
             ></textarea>
         </div>

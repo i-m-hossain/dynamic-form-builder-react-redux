@@ -3,6 +3,7 @@ import { GrSquare } from "react-icons/gr";
 import { AiOutlinePlusSquare } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addInput } from "../../store/slices/inputCounter/inputCounterSlice";
+import { generateId } from "../../helper/generateId";
 const AddSection = () => {
     const dispatch = useDispatch();
     return (
@@ -14,7 +15,7 @@ const AddSection = () => {
                 onClick={() =>
                     dispatch(
                         addInput({
-                            id: Math.floor(Math.random() * 10000000),
+                            id: generateId(8),
                             type: "input",
                         })
                     )
