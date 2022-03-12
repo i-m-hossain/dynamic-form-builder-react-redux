@@ -6,7 +6,7 @@ const initialState = {
             id: generateId(8),
             name: "",
             description: "",
-            isCurrentStep: "",
+            isCurrentStep: false,
             inputs: [
                 {
                     id: "",
@@ -62,11 +62,29 @@ export const stepSlice = createSlice({
                 }
             });
         },
+        handleCurrentStep: (state, { payload }) => {
+            console.log(payload);
+            state.steps.forEach((step) => {
+                step.isCurrentStep = false; //initially make all the current step false
+                if (step.id === payload.id) {
+                    const index = state.steps.indexOf(step);
+                    console.log(index);
+                    if (index > -1) {
+                        state.steps[index].isCurrentStep = true;
+                    }
+                }
+            });
+        },
         addStepName: (state, { payload }) => {},
         addStepDescription: (state, { payload }) => {},
     },
 });
 
-export const { addStep, addStepName, addStepDetails, deleteStep } =
-    stepSlice.actions;
+export const {
+    addStep,
+    addStepName,
+    addStepDetails,
+    deleteStep,
+    handleCurrentStep,
+} = stepSlice.actions;
 export default stepSlice.reducer;

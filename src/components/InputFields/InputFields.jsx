@@ -15,7 +15,7 @@ const InputFields = ({ input }) => {
     };
 
     return (
-        <div className="flex flex-col  rounded-md p-4  border-2 ">
+        <div className="flex flex-col  rounded-md  ">
             <div className="flex flex-col pb-4 space-y-4 border-b-2 ">
                 <div className="flex space-x-4">
                     <InputLabel input={input} />
