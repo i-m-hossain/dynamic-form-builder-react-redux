@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     addOption,
     deleteOption,
+    addOptionTitle,
 } from "../../store/slices/inputCounter/inputCounterSlice";
 import { BsCircle } from "react-icons/bs";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
@@ -19,7 +20,6 @@ const InputOptions = ({ input }) => {
             optionsById.push(option);
         }
     });
-    console.log("optionsById---->", optionsById);
     const handleDelete = (optionId) => {
         console.log("option id", optionId);
         dispatch(deleteOption(optionId));
@@ -43,6 +43,16 @@ const InputOptions = ({ input }) => {
                                   type="text"
                                   placeholder={`option ${index + 1}`}
                                   className="outline-none p-1 rounded-md"
+                                  value={option.optionTitle}
+                                  onChange={(e) =>
+                                      dispatch(
+                                          addOptionTitle({
+                                              inputId: input.id,
+                                              title: e.target.value,
+                                              optionId: option.optionId,
+                                          })
+                                      )
+                                  }
                               />
                               <AiOutlineMinusCircle
                                   className="text-xl cursor-pointer text-red-400 hover:text-red-600"
@@ -63,6 +73,7 @@ const InputOptions = ({ input }) => {
                                 inputId: input.id,
                                 type: input.type,
                                 optionId: generateId(8),
+                                optionTitle: "",
                             })
                         );
                     }}

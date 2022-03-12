@@ -65,7 +65,6 @@ export const inputCounterSlice = createSlice({
         },
         deleteOption: (state, { payload }) => {
             state.options.forEach((option) => {
-                console.log("option---> ", payload);
                 if (option.optionId === payload) {
                     const index = state.options.indexOf(option);
                     if (index > -1) {
@@ -74,8 +73,25 @@ export const inputCounterSlice = createSlice({
                 }
             });
         },
+        addOptionTitle: (state, { payload }) => {
+            console.log("payload---->!", payload);
+            state.options.forEach((option) => {
+                if (option.optionId === payload.optionId) {
+                    const index = state.options.indexOf(option);
+                    if (index > -1) {
+                        state.options[index].optionTitle = payload.title;
+                    }
+                }
+            });
+        },
     },
 });
-export const { addInput, deleteInput, updateInput, addOption, deleteOption } =
-    inputCounterSlice.actions;
+export const {
+    addInput,
+    deleteInput,
+    updateInput,
+    addOption,
+    deleteOption,
+    addOptionTitle,
+} = inputCounterSlice.actions;
 export default inputCounterSlice.reducer;
