@@ -85,12 +85,21 @@ export const inputCounterSlice = createSlice({
             });
         },
         addInputLabel: (state, { payload }) => {
-            console.log("payload---->!", payload);
             state.values.forEach((item) => {
                 if (item.id === payload.id) {
                     const index = state.values.indexOf(item);
                     if (index > -1) {
                         state.values[index].label = payload.label;
+                    }
+                }
+            });
+        },
+        handleCheckRequired: (state, { payload }) => {
+            state.values.forEach((item) => {
+                if (item.id === payload.id) {
+                    const index = state.values.indexOf(item);
+                    if (index > -1) {
+                        state.values[index].required = payload.required;
                     }
                 }
             });
@@ -105,5 +114,6 @@ export const {
     deleteOption,
     addOptionTitle,
     addInputLabel,
+    handleCheckRequired,
 } = inputCounterSlice.actions;
 export default inputCounterSlice.reducer;

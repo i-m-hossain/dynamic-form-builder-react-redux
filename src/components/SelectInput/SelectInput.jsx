@@ -5,9 +5,8 @@ import inputs from "./data";
 const SelectInput = ({ input }) => {
     const dispatch = useDispatch();
     const items = inputs || [];
-    console.log("item", input);
     return (
-        <div className=" w-1/2 ">
+        <div className="w-1/2 ">
             {/* selectInput */}
             <select
                 name=""

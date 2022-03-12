@@ -18,6 +18,7 @@ const AddSection = () => {
                             id: generateId(8),
                             type: "",
                             label: "",
+                            required: false,
                         })
                     )
                 }
