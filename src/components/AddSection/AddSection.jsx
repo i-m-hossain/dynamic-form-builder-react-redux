@@ -4,6 +4,7 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addInput } from "../../store/slices/inputCounter/inputCounterSlice";
 import { generateId } from "../../helper/generateId";
+import { addStep } from "../../store/slices/stepSlice/stepSlice";
 const AddSection = () => {
     const dispatch = useDispatch();
     return (
@@ -29,7 +30,7 @@ const AddSection = () => {
             <button
                 className="list-none text-5xl cursor-pointer"
                 title="Add section"
-                onClick={() => alert("OOps! I am sleeping! wait for tomorrow.")}
+                onClick={() => dispatch(addStep({ stepId: generateId(8) }))}
             >
                 <GrSquare />
             </button>
