@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useForm } from "react-hook-form";
 const initialState = {
     values: [],
     options: [],
@@ -85,6 +84,7 @@ export const inputCounterSlice = createSlice({
                 }
             });
         },
+        
     },
 });
 export const {
