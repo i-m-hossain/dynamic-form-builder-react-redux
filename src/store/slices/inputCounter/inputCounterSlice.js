@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useForm } from "react-hook-form";
 const initialState = {
     values: [],
     options: [],
@@ -74,12 +75,22 @@ export const inputCounterSlice = createSlice({
             });
         },
         addOptionTitle: (state, { payload }) => {
-            console.log("payload---->!", payload);
             state.options.forEach((option) => {
                 if (option.optionId === payload.optionId) {
                     const index = state.options.indexOf(option);
                     if (index > -1) {
                         state.options[index].optionTitle = payload.title;
+                    }
+                }
+            });
+        },
+        addInputLabel: (state, { payload }) => {
+            console.log("payload---->!", payload);
+            state.values.forEach((item) => {
+                if (item.id === payload.id) {
+                    const index = state.values.indexOf(item);
+                    if (index > -1) {
+                        state.values[index].label = payload.label;
                     }
                 }
             });
@@ -93,5 +104,6 @@ export const {
     addOption,
     deleteOption,
     addOptionTitle,
+    addInputLabel,
 } = inputCounterSlice.actions;
 export default inputCounterSlice.reducer;

@@ -16,7 +16,8 @@ const AddSection = () => {
                     dispatch(
                         addInput({
                             id: generateId(8),
-                            type: "input",
+                            type: "",
+                            label: "",
                         })
                     )
                 }
