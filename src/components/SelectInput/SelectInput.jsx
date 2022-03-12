@@ -22,7 +22,7 @@ const SelectInput = ({ input }) => {
                 <option>Select input</option>
                 {items.map((item, index) => (
                     <option key={index} value={item}>
-                        {item} input
+                        {item}
                     </option>
                 ))}
             </select>

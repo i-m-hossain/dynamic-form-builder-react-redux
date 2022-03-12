@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     values: [],
+    options: [],
 };
 
 export const inputCounterSlice = createSlice({
@@ -29,26 +30,52 @@ export const inputCounterSlice = createSlice({
                     }
                 }
             });
+            // state.options.length > 0
+            //     ? state.options.forEach((option) => {
+            //           if (option.id === payload.id) {
+            //               const index = state.options.indexOf(option);
+            //               if (index > -1) {
+            //                   state.options.splice(index, 1);
+            //                   state.options.push(payload);
+            //               }
+            //           }
+            //       })
+            //     : state.options.splice(0, 1, payload);
+            // state.options.push(payload);
         },
-        addOption: (state, { payload }) => {
-            console.log("payload---->", payload);
-            state.values.forEach((item) => {
-                if (item.id === payload.id) {
-                    const index = state.values.indexOf(item);
-                    console.log(index);
-                    if (index > -1) {
-                        state.values[index].options = state.values[index]
-                            .options
-                            ? [...state.values[index].options]
-                            : [];
+        // addOption: (state, { payload }) => {
+        //     console.log("payload---->", payload);
+        //     state.values.forEach((item) => {
+        //         if (item.id === payload.id) {
+        //             const index = state.values.indexOf(item);
+        //             console.log(index);
+        //             if (index > -1) {
+        //                 state.values[index].options = state.values[index]
+        //                     .options
+        //                     ? [...state.values[index].options]
+        //                     : [];
 
-                        state.values[index].options.push(payload.option);
+        //                 state.values[index].options.push(payload.option);
+        //             }
+        //         }
+        //     });
+        // },
+        addOption: (state, { payload }) => {
+            state.options.push(payload);
+        },
+        deleteOption: (state, { payload }) => {
+            state.options.forEach((option) => {
+                console.log("option---> ", payload);
+                if (option.optionId === payload) {
+                    const index = state.options.indexOf(option);
+                    if (index > -1) {
+                        state.options.splice(index, 1);
                     }
                 }
             });
         },
     },
 });
-export const { addInput, deleteInput, updateInput, addOption } =
+export const { addInput, deleteInput, updateInput, addOption, deleteOption } =
     inputCounterSlice.actions;
 export default inputCounterSlice.reducer;
