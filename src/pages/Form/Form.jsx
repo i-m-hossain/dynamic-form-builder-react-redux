@@ -10,7 +10,6 @@ import {
 } from "../../store/slices/stepSlice/stepSlice";
 const Form = () => {
     const steps = useSelector((state) => state.steps.steps);
-    console.log(steps);
     const dispatch = useDispatch();
     return (
         <div className="flex justify-center items-center space-x-20 p-10 bg-slate-50 w-3/4 mx-auto mt-10">
@@ -18,10 +17,8 @@ const Form = () => {
                 {steps.map((step, index) => (
                     <div
                         className={`${
-                            step.isCurrentStep
-                                ? "border-4 border-green-400"
-                                : ""
-                        } space-y-8 border bg-blue-100 p-6 rounded-md`}
+                            step.isCurrentStep ? "border-4 border-blue-400" : ""
+                        } space-y-8 border  p-6 rounded-md`}
                         onClick={() => {
                             dispatch(
                                 handleCurrentStep({
@@ -33,11 +30,11 @@ const Form = () => {
                         key={step.id}
                     >
                         {steps.length !== 1 && (
-                            <div className="flex justify-between items-center px-4 bg-green-200 p-2 rounded-md">
+                            <div className="flex justify-between items-center px-4 bg-purple-400 p-2 rounded-md">
                                 <h4>Step {index + 1}</h4>
                                 {index !== 0 && (
                                     <button
-                                        className="text-2xl text-red-400"
+                                        className="text-2xl text-red-400 bg-slate-100 rounded-full p-1"
                                         onClick={() =>
                                             dispatch(
                                                 deleteStep({ id: step.id })

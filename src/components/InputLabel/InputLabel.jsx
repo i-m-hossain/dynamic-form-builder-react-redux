@@ -1,6 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addInputLabel } from "../../store/slices/inputCounter/inputCounterSlice";
+import { useDispatch } from "react-redux";
 import { updateInput } from "../../store/slices/stepSlice/stepSlice";
 
 const InputLabel = ({ input, stepId }) => {
