@@ -117,6 +117,19 @@ export const stepSlice = createSlice({
                 }
             });
         },
+        addOption: (state) => {
+            state.steps.forEach((step) => {
+                if (step.isCurrentStep === true) {
+                    step.inputs.forEach((input) => {
+                        input.options.push({
+                            id: generateId(8),
+                            name: "",
+                            icon: "",
+                        });
+                    });
+                }
+            });
+        },
     },
 });
 
@@ -130,5 +143,6 @@ export const {
     makeFirstStepActive,
     updateInput,
     deleteSingleInput,
+    addOption,
 } = stepSlice.actions;
 export default stepSlice.reducer;

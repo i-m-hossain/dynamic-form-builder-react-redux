@@ -18,13 +18,16 @@ const InputFields = ({ input, stepId }) => {
                     <InputLabel input={input} stepId={stepId} />
                     <SelectInput input={input} stepId={stepId} />
                 </div>
-                {/* <div>
+                <div>
                     {(input.type === "radio" ||
                         input.type === "checkbox" ||
                         input.type === "select") && (
-                        <InputOptions input={input}></InputOptions>
+                        <InputOptions
+                            input={input}
+                            stepId={stepId}
+                        ></InputOptions>
                     )}
-                </div> */}
+                </div>
             </div>
 
             <div className="flex flex-row justify-end pt-4 space-x-10">
