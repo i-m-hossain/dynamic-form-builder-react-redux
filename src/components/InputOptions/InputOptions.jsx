@@ -8,12 +8,14 @@ import { BsCircle } from "react-icons/bs";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiOutlineMinusCircle } from "react-icons/ai";
-import { addOption } from "../../store/slices/stepSlice/stepSlice";
+import {
+    addOption,
+    updateOptionName,
+} from "../../store/slices/stepSlice/stepSlice";
 
 const InputOptions = ({ input, stepId }) => {
     const dispatch = useDispatch();
     const steps = useSelector((state) => state.steps.steps);
-    console.log("steps--->", steps);
     let options = [];
     steps.forEach((step) => {
         if (step.id === stepId) {
@@ -28,7 +30,6 @@ const InputOptions = ({ input, stepId }) => {
     });
 
     const handleDelete = (optionId) => {
-        console.log("option id", optionId);
         dispatch(deleteOption(optionId));
     };
 
@@ -49,13 +50,14 @@ const InputOptions = ({ input, stepId }) => {
                             type="text"
                             placeholder={`option ${index + 1}`}
                             className="outline-none p-1 rounded-md"
-                            value={option.optionTitle}
+                            value={option.name}
                             onChange={(e) =>
                                 dispatch(
-                                    addOptionTitle({
+                                    updateOptionName({
+                                        optionId: option.id,
                                         inputId: input.id,
-                                        title: e.target.value,
-                                        optionId: option.optionId,
+                                        stepId: stepId,
+                                        name: e.target.value,
                                     })
                                 )
                             }
