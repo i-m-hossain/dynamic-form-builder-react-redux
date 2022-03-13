@@ -2,13 +2,12 @@ import React from "react";
 import SelectInput from "../SelectInput/SelectInput";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import {
-    deleteInput,
-    handleCheckRequired,
-} from "../../store/slices/inputCounter/inputCounterSlice";
+import { deleteInput } from "../../store/slices/inputCounter/inputCounterSlice";
 import InputLabel from "../InputLabel/InputLabel";
 import InputOptions from "../InputOptions/InputOptions";
-const InputFields = ({ input }) => {
+import { updateInput } from "../../store/slices/stepSlice/stepSlice";
+
+const InputFields = ({ input, stepId }) => {
     const dispatch = useDispatch();
     const handleDelete = () => {
         dispatch(deleteInput(input.id));
@@ -18,8 +17,8 @@ const InputFields = ({ input }) => {
         <div className="flex flex-col  rounded-md  ">
             <div className="flex flex-col pb-4 space-y-4 border-b-2 ">
                 <div className="flex space-x-4">
-                    <InputLabel input={input} />
-                    <SelectInput input={input} />
+                    <InputLabel input={input} stepId={stepId} />
+                    <SelectInput input={input} stepId={stepId} />
                 </div>
                 <div>
                     {(input.type === "radio" ||
@@ -37,9 +36,11 @@ const InputFields = ({ input }) => {
                         value={input.required}
                         onChange={(e) =>
                             dispatch(
-                                handleCheckRequired({
+                                updateInput({
                                     id: input.id,
                                     required: e.target.checked,
+                                    stepId: stepId,
+                                    field: "required",
                                 })
                             )
                         }

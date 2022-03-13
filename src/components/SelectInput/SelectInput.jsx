@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateInput } from "../../store/slices/inputCounter/inputCounterSlice";
+import { updateInput } from "../../store/slices/stepSlice/stepSlice";
 import inputs from "./data";
-const SelectInput = ({ input }) => {
+const SelectInput = ({ input, stepId }) => {
     const dispatch = useDispatch();
     const items = inputs || [];
     return (
@@ -12,9 +12,14 @@ const SelectInput = ({ input }) => {
                 name=""
                 id=""
                 className="outline-none w-full p-2 border-b-2 border-gray-200"
-                onClick={(e) =>
+                onChange={(e) =>
                     dispatch(
-                        updateInput({ id: input.id, type: e.target.value })
+                        updateInput({
+                            id: input.id,
+                            type: e.target.value,
+                            stepId: stepId,
+                            field: "inputType",
+                        })
                     )
                 }
             >

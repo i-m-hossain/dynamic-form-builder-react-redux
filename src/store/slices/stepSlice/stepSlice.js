@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { generateId } from "../../../helper/generateId";
-import { handleStepField, handleStepName } from "../../helper/helper";
+import { handleStepField, updateInputs } from "../../helper/helper";
 const initialState = {
     steps: [
         {
@@ -10,9 +10,9 @@ const initialState = {
             isCurrentStep: false,
             inputs: [
                 {
-                    id: "",
+                    id: generateId(8),
                     label: "",
-                    inputType: "",
+                    type: "",
                     required: false,
                     options: [
                         {
@@ -38,9 +38,9 @@ export const stepSlice = createSlice({
                 isCurrentStep: false,
                 inputs: [
                     {
-                        id: "",
+                        id: generateId(8),
                         label: "",
-                        inputType: "",
+                        type: "",
                         required: false,
                         options: [
                             {
@@ -78,7 +78,7 @@ export const stepSlice = createSlice({
                     step.inputs.push({
                         id: generateId(8),
                         label: "",
-                        inputType: "",
+                        type: "",
                         required: false,
                         options: [
                             {
@@ -94,6 +94,9 @@ export const stepSlice = createSlice({
         makeFirstStepActive: (state) => {
             state.steps[0].isCurrentStep = true;
         },
+        updateInput: (state, { payload }) => {
+            updateInputs(state.steps, payload);
+        },
     },
 });
 
@@ -105,5 +108,6 @@ export const {
     handleCurrentStep,
     addInput,
     makeFirstStepActive,
+    updateInput,
 } = stepSlice.actions;
 export default stepSlice.reducer;

@@ -9,15 +9,19 @@ import {
     handleCurrentStep,
 } from "../../store/slices/stepSlice/stepSlice";
 const Form = () => {
-    const inputs = useSelector((state) => state.inputCounter.values);
     const steps = useSelector((state) => state.steps.steps);
+    console.log(steps);
     const dispatch = useDispatch();
     return (
         <div className="flex justify-center items-center space-x-20 p-10 bg-slate-50 w-3/4 mx-auto mt-10">
             <div className="w-full space-y-4 mx-auto">
                 {steps.map((step, index) => (
                     <div
-                        className="space-y-8 bg-blue-100 p-6 rounded-md"
+                        className={`${
+                            step.isCurrentStep
+                                ? "border-4 border-green-400"
+                                : ""
+                        } space-y-8 border bg-blue-100 p-6 rounded-md`}
                         onClick={() => {
                             dispatch(
                                 handleCurrentStep({
@@ -46,8 +50,12 @@ const Form = () => {
                             </div>
                         )}
                         <Title step={step} />
-                        {inputs.map((item) => (
-                            <InputFields key={item.id} input={item} />
+                        {step.inputs.map((input) => (
+                            <InputFields
+                                key={input.id}
+                                input={input}
+                                stepId={step.id}
+                            />
                         ))}
                     </div>
                 ))}
