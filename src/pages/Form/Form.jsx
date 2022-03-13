@@ -40,7 +40,7 @@ const Form = () => {
                                 )}
                             </div>
                         )}
-                        <Title />
+                        <Title step={step} />
                         {inputs.map((item) => (
                             <InputFields key={item.id} input={item} />
                         ))}

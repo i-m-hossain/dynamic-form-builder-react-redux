@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { generateId } from "../../../helper/generateId";
+import { handleStepField, handleStepName } from "../../helper/helper";
 const initialState = {
     steps: [
         {
@@ -75,15 +76,19 @@ export const stepSlice = createSlice({
                 }
             });
         },
-        addStepName: (state, { payload }) => {},
-        addStepDescription: (state, { payload }) => {},
+        addStepName: (state, { payload }) => {
+            handleStepField(state.steps, payload);
+        },
+        addStepDescription: (state, { payload }) => {
+            handleStepField(state.steps, payload);
+        },
     },
 });
 
 export const {
     addStep,
     addStepName,
-    addStepDetails,
+    addStepDescription,
     deleteStep,
     handleCurrentStep,
 } = stepSlice.actions;
