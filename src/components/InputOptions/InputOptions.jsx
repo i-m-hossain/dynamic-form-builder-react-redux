@@ -1,15 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    deleteOption,
-    addOptionTitle,
-} from "../../store/slices/inputCounter/inputCounterSlice";
 import { BsCircle } from "react-icons/bs";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import {
     addOption,
+    deleteOptionName,
     updateOptionName,
 } from "../../store/slices/stepSlice/stepSlice";
 
@@ -28,10 +25,6 @@ const InputOptions = ({ input, stepId }) => {
             });
         }
     });
-
-    const handleDelete = (optionId) => {
-        dispatch(deleteOption(optionId));
-    };
 
     return (
         <div className="flex">
@@ -65,7 +58,15 @@ const InputOptions = ({ input, stepId }) => {
                         <AiOutlineMinusCircle
                             className="text-xl cursor-pointer text-red-400 hover:text-red-600"
                             title="Delete input"
-                            onClick={() => handleDelete(option.optionId)}
+                            onClick={() =>
+                                dispatch(
+                                    deleteOptionName({
+                                        stepId: stepId,
+                                        inputId: input.id,
+                                        optionId: option.id,
+                                    })
+                                )
+                            }
                         />
                     </div>
                 ))}
