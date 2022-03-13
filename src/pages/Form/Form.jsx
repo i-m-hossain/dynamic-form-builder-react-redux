@@ -19,7 +19,12 @@ const Form = () => {
                     <div
                         className="space-y-8 bg-blue-100 p-6 rounded-md"
                         onClick={() => {
-                            dispatch(handleCurrentStep({ id: step.id }));
+                            dispatch(
+                                handleCurrentStep({
+                                    id: step.id,
+                                    field: "isCurrentStep",
+                                })
+                            );
                         }}
                         key={step.id}
                     >

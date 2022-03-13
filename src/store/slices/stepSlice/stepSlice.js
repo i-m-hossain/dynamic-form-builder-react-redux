@@ -30,12 +30,12 @@ export const stepSlice = createSlice({
     name: "step",
     initialState,
     reducers: {
-        addStep: (state, { payload }) => {
+        addStep: (state) => {
             state.steps.push({
-                id: payload.stepId,
+                id: generateId(6),
                 name: "",
                 description: "",
-                isCurrentStep: "",
+                isCurrentStep: false,
                 inputs: [
                     {
                         id: "",
@@ -64,23 +64,35 @@ export const stepSlice = createSlice({
             });
         },
         handleCurrentStep: (state, { payload }) => {
-            console.log(payload);
-            state.steps.forEach((step) => {
-                step.isCurrentStep = false; //initially make all the current step false
-                if (step.id === payload.id) {
-                    const index = state.steps.indexOf(step);
-                    console.log(index);
-                    if (index > -1) {
-                        state.steps[index].isCurrentStep = true;
-                    }
-                }
-            });
+            handleStepField(state.steps, payload);
         },
         addStepName: (state, { payload }) => {
             handleStepField(state.steps, payload);
         },
         addStepDescription: (state, { payload }) => {
             handleStepField(state.steps, payload);
+        },
+        addInput: (state, { payload }) => {
+            state.steps.forEach((step) => {
+                if (step.isCurrentStep === true) {
+                    step.inputs.push({
+                        id: generateId(8),
+                        label: "",
+                        inputType: "",
+                        required: false,
+                        options: [
+                            {
+                                id: "",
+                                name: "",
+                                icon: "",
+                            },
+                        ],
+                    });
+                }
+            });
+        },
+        makeFirstStepActive: (state) => {
+            state.steps[0].isCurrentStep = true;
         },
     },
 });
@@ -91,5 +103,7 @@ export const {
     addStepDescription,
     deleteStep,
     handleCurrentStep,
+    addInput,
+    makeFirstStepActive,
 } = stepSlice.actions;
 export default stepSlice.reducer;

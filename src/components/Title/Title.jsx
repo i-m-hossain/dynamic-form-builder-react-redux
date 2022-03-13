@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
     addStepDescription,
     addStepName,
 } from "../../store/slices/stepSlice/stepSlice";
 
 const Title = ({ step }) => {
-    console.log(step);
     const dispatch = useDispatch();
     return (
         <div className="flex flex-col space-y-4 w-4/4 rounded-md ">
