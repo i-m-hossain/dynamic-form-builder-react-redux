@@ -16,7 +16,7 @@ const initialState = {
                     required: false,
                     options: [
                         {
-                            id: "",
+                            id: generateId(8),
                             name: "",
                             icon: "",
                         },
@@ -44,7 +44,7 @@ export const stepSlice = createSlice({
                         required: false,
                         options: [
                             {
-                                id: "",
+                                id: generateId(8),
                                 name: "",
                                 icon: "",
                             },
@@ -72,7 +72,7 @@ export const stepSlice = createSlice({
         addStepDescription: (state, { payload }) => {
             handleStepField(state.steps, payload);
         },
-        addInput: (state, { payload }) => {
+        addInput: (state) => {
             state.steps.forEach((step) => {
                 if (step.isCurrentStep === true) {
                     step.inputs.push({
@@ -82,7 +82,7 @@ export const stepSlice = createSlice({
                         required: false,
                         options: [
                             {
-                                id: "",
+                                id: generateId(8),
                                 name: "",
                                 icon: "",
                             },
@@ -97,6 +97,26 @@ export const stepSlice = createSlice({
         updateInput: (state, { payload }) => {
             updateInputs(state.steps, payload);
         },
+        deleteSingleInput: (state, { payload }) => {
+            console.log(payload);
+            state.steps.forEach((step) => {
+                if (step.id === payload.stepId) {
+                    const stepIndex = state.steps.indexOf(step);
+                    if (stepIndex > -1) {
+                        step.inputs.forEach((input) => {
+                            if (input.id === payload.id) {
+                                console.log("payload----->", payload);
+                                const index = step.inputs.indexOf(input);
+                                console.log("index", index);
+                                if (index > -1) {
+                                    step.inputs.splice(index, 1);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        },
     },
 });
 
@@ -109,5 +129,6 @@ export const {
     addInput,
     makeFirstStepActive,
     updateInput,
+    deleteSingleInput,
 } = stepSlice.actions;
 export default stepSlice.reducer;

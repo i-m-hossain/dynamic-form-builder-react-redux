@@ -2,17 +2,15 @@ import React from "react";
 import SelectInput from "../SelectInput/SelectInput";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { deleteInput } from "../../store/slices/inputCounter/inputCounterSlice";
 import InputLabel from "../InputLabel/InputLabel";
 import InputOptions from "../InputOptions/InputOptions";
-import { updateInput } from "../../store/slices/stepSlice/stepSlice";
+import {
+    deleteSingleInput,
+    updateInput,
+} from "../../store/slices/stepSlice/stepSlice";
 
 const InputFields = ({ input, stepId }) => {
     const dispatch = useDispatch();
-    const handleDelete = () => {
-        dispatch(deleteInput(input.id));
-    };
-
     return (
         <div className="flex flex-col  rounded-md  ">
             <div className="flex flex-col pb-4 space-y-4 border-b-2 ">
@@ -20,13 +18,13 @@ const InputFields = ({ input, stepId }) => {
                     <InputLabel input={input} stepId={stepId} />
                     <SelectInput input={input} stepId={stepId} />
                 </div>
-                <div>
+                {/* <div>
                     {(input.type === "radio" ||
                         input.type === "checkbox" ||
                         input.type === "select") && (
                         <InputOptions input={input}></InputOptions>
                     )}
-                </div>
+                </div> */}
             </div>
 
             <div className="flex flex-row justify-end pt-4 space-x-10">
@@ -50,7 +48,11 @@ const InputFields = ({ input, stepId }) => {
                 <RiDeleteBin5Line
                     className="text-3xl cursor-pointer text-red-400 hover:text-red-600"
                     title="Delete input"
-                    onClick={handleDelete}
+                    onClick={() =>
+                        dispatch(
+                            deleteSingleInput({ id: input.id, stepId: stepId })
+                        )
+                    }
                 />
             </div>
         </div>
