@@ -13,7 +13,7 @@ const AddSection = () => {
         dispatch(makeFirstStepActive());
     }, [dispatch]);
     return (
-        <div className="flex flex-col justify-center items-center border border-sm shadow-lg rounded-lg p-4">
+        <div className="flex flex-row md:flex-col justify-center items-center border border-sm shadow-lg rounded-lg p-4 mb-2 space-x-4 mx-auto">
             {/* add field or section */}
             <button
                 className="text-6xl cursor-pointer"

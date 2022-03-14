@@ -13,8 +13,8 @@ const Form = () => {
     console.log("steps---->", steps);
     const dispatch = useDispatch();
     return (
-        <div className="flex justify-center items-center space-x-20 p-10 bg-slate-50 w-3/4 mx-auto mt-10">
-            <div className="w-full space-y-4 mx-auto">
+        <div className="flex flex-col md:flex-row justify-center items-center md:space-x-20 p-10 bg-slate-50 md:w-3/4 mx-auto mt-10 ">
+            <div className="w-full space-y-4 mx-auto order-last md:order-first">
                 {steps.map((step, index) => (
                     <div
                         className={`${
