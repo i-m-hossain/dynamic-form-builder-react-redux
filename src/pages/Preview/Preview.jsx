@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
 
 const Preview = () => {
     const steps = useSelector((state) => state.steps.steps);
     const [index, setIndex] = useState(0);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
+    const onSubmit = (data) => console.log(data);
     const handleNextStep = (e) => {
         e.preventDefault();
         setIndex((state) => state + 1);
@@ -15,7 +22,10 @@ const Preview = () => {
     };
 
     return (
-        <form className="flex flex-col justify-center items-center my-4">
+        <form
+            className="flex flex-col justify-center items-center my-4"
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <div className="bg-purple-200 w-2/4 p-4 rounded-md">
                 <h2>{steps[index].name}</h2>
                 <p>{steps[index].description}</p>
@@ -34,10 +44,18 @@ const Preview = () => {
                                 className="p-3 outline-none bg-slate-200 rounded-md"
                                 placeholder="enter credentials"
                                 required={input.required}
+                                {...register(
+                                    `${input.name}`,
+                                    input.required && {
+                                        required: "This field is required",
+                                    }
+                                )}
                             />
                         )}
-                        {(input.type === "radio" ||
-                            input.type === "checkbox") &&
+                        {/* {errors?.input?.name && (
+                            <span>{errors?.input?.name?.message}</span>
+                        )} */}
+                        {input.type === "radio" &&
                             input.options.map((option) => (
                                 <div
                                     key={option.id}
@@ -48,8 +66,42 @@ const Preview = () => {
                                             <input
                                                 type={input.type}
                                                 name={input.name}
+                                                {...register(
+                                                    `${input.name}`,
+                                                    input.required && {
+                                                        required:
+                                                            "This field is required",
+                                                    }
+                                                )}
                                             />
                                             <h4>{option.name}</h4>
+                                        </>
+                                    )}
+                                </div>
+                            ))}
+                        {input.type === "checkbox" &&
+                            input.options.map((option) => (
+                                <div
+                                    key={option.id}
+                                    className="flex justify-start items-center space-x-4"
+                                >
+                                    {option.name && (
+                                        <>
+                                            <input
+                                                type={input.type}
+                                                name={input.name}
+                                                {...register(
+                                                    `${input.name}`,
+                                                    input.required && {
+                                                        required:
+                                                            "This field is required",
+                                                    }
+                                                )}
+                                                value={option.name}
+                                            />
+                                            <label htmlFor={input.name}>
+                                                {option.name}
+                                            </label>
                                         </>
                                     )}
                                 </div>
@@ -60,6 +112,12 @@ const Preview = () => {
                                     name=""
                                     id=""
                                     className="w-1/4 border-2 rounded-md p-2"
+                                    {...register(
+                                        `${input.name}`,
+                                        input.required && {
+                                            required: "This field is required",
+                                        }
+                                    )}
                                 >
                                     {input.options.map((option) => (
                                         <option
@@ -83,7 +141,7 @@ const Preview = () => {
                                 className="border rounded-md p-2 bg-purple-300"
                                 onClick={handlePrevStep}
                             >
-                                Back
+                                Prev Step
                             </button>
                         )}
                         {index !== steps.length - 1 && (
@@ -91,7 +149,7 @@ const Preview = () => {
                                 className="border rounded-md p-2 bg-red-300"
                                 onClick={handleNextStep}
                             >
-                                Next
+                                Next Step
                             </button>
                         )}
                     </>
