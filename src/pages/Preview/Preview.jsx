@@ -43,7 +43,7 @@ const Preview = () => {
                                 type={input.type}
                                 className="p-3 outline-none bg-slate-200 rounded-md"
                                 placeholder="enter credentials"
-                                required={input.required}
+                                // required={input.required}
                                 {...register(
                                     `${input.name}`,
                                     input.required && {
@@ -52,34 +52,11 @@ const Preview = () => {
                                 )}
                             />
                         )}
-                        {/* {errors?.input?.name && (
+                        {errors?.input?.name && (
                             <span>{errors?.input?.name?.message}</span>
-                        )} */}
-                        {input.type === "radio" &&
-                            input.options.map((option) => (
-                                <div
-                                    key={option.id}
-                                    className="flex justify-start items-center space-x-4"
-                                >
-                                    {option.name && (
-                                        <>
-                                            <input
-                                                type={input.type}
-                                                name={input.name}
-                                                {...register(
-                                                    `${input.name}`,
-                                                    input.required && {
-                                                        required:
-                                                            "This field is required",
-                                                    }
-                                                )}
-                                            />
-                                            <h4>{option.name}</h4>
-                                        </>
-                                    )}
-                                </div>
-                            ))}
-                        {input.type === "checkbox" &&
+                        )}
+                        {(input.type === "radio" ||
+                            input.type === "checkbox") &&
                             input.options.map((option) => (
                                 <div
                                     key={option.id}
@@ -99,13 +76,12 @@ const Preview = () => {
                                                 )}
                                                 value={option.name}
                                             />
-                                            <label htmlFor={input.name}>
-                                                {option.name}
-                                            </label>
+                                            <h4>{option.name}</h4>
                                         </>
                                     )}
                                 </div>
                             ))}
+
                         {input.type === "select" && (
                             <div className="flex justify-start items-center space-x-4">
                                 <select
