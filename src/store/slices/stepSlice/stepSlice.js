@@ -115,15 +115,18 @@ export const stepSlice = createSlice({
                 }
             });
         },
-        addOption: (state) => {
+        addOption: (state, { payload }) => {
             state.steps.forEach((step) => {
-                if (step.isCurrentStep === true) {
+                console.log("object");
+                if (step.id === payload.stepId) {
                     step.inputs.forEach((input) => {
-                        input.options.push({
-                            id: generateId(8),
-                            name: "",
-                            icon: "",
-                        });
+                        if (input.id === payload.inputId) {
+                            input.options.push({
+                                id: generateId(8),
+                                name: "",
+                                icon: "",
+                            });
+                        }
                     });
                 }
             });

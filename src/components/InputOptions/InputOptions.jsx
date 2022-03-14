@@ -76,7 +76,9 @@ const InputOptions = ({ input, stepId }) => {
                 <button
                     className="cursor-pointer text-2xl"
                     onClick={() => {
-                        dispatch(addOption());
+                        dispatch(
+                            addOption({ stepId: stepId, inputId: input.id })
+                        );
                     }}
                 >
                     <AiOutlinePlusCircle className="ml-4" />

@@ -10,6 +10,7 @@ import {
 } from "../../store/slices/stepSlice/stepSlice";
 const Form = () => {
     const steps = useSelector((state) => state.steps.steps);
+    console.log("steps---->", steps);
     const dispatch = useDispatch();
     return (
         <div className="flex justify-center items-center space-x-20 p-10 bg-slate-50 w-3/4 mx-auto mt-10">
