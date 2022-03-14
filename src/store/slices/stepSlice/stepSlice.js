@@ -14,6 +14,7 @@ const initialState = {
                     label: "",
                     type: "",
                     required: false,
+                    name: generateId(10),
                     options: [
                         {
                             id: generateId(8),
@@ -42,6 +43,7 @@ export const stepSlice = createSlice({
                         label: "",
                         type: "",
                         required: false,
+                        name: generateId(10),
                         options: [
                             {
                                 id: generateId(8),
@@ -80,6 +82,7 @@ export const stepSlice = createSlice({
                         label: "",
                         type: "",
                         required: false,
+                        name: generateId(10),
                         options: [
                             {
                                 id: generateId(8),
