@@ -11,10 +11,7 @@ const Navbar = () => {
                     <Link to="/form" className="mr-5 hover:text-gray-900">
                         Create Form
                     </Link>
-                    <Link
-                        to="/preview/step"
-                        className="mr-5 hover:text-gray-900"
-                    >
+                    <Link to="/Preview" className="mr-5 hover:text-gray-900">
                         Preview
                     </Link>
                 </nav>

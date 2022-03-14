@@ -13,10 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/form" element={<Form />} />
-
-                    <Route path="preview" element={<Preview />}>
-                        <Route path="step" element={<Step />} />
-                    </Route>
+                    <Route path="/preview" element={<Preview />} />
                 </Routes>
             </Layout>
         </BrowserRouter>

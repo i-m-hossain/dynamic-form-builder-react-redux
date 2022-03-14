@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 const Preview = () => {
-    let inputs = [];
-    let options = [];
     const steps = useSelector((state) => state.steps.steps);
-    let index = 1;
-    console.log(steps);
+    const [index, setIndex] = useState(0);
+    const handleNextStep = (e) => {
+        e.preventDefault();
+        setIndex((state) => state + 1);
+    };
+    const handlePrevStep = (e) => {
+        e.preventDefault();
+        setIndex((state) => (state > 0 ? state - 1 : 0));
+    };
+
     return (
-        <div className="flex flex-col justify-center items-center my-4">
+        <form className="flex flex-col justify-center items-center my-4">
             <div className="bg-purple-200 w-2/4 p-4 rounded-md">
                 <h2>{steps[index].name}</h2>
                 <p>{steps[index].description}</p>
@@ -72,13 +78,31 @@ const Preview = () => {
             <div className="flex justify-start w-2/4 border p-4 border-purple-500 mt-4 rounded-md space-x-4">
                 {steps.length > 1 && (
                     <>
-                        <button className="border rounded-md p-2">Back</button>
-                        <button className="border rounded-md p-2">Next</button>
+                        {index !== 0 && (
+                            <button
+                                className="border rounded-md p-2 bg-purple-300"
+                                onClick={handlePrevStep}
+                            >
+                                Back
+                            </button>
+                        )}
+                        {index !== steps.length - 1 && (
+                            <button
+                                className="border rounded-md p-2 bg-red-300"
+                                onClick={handleNextStep}
+                            >
+                                Next
+                            </button>
+                        )}
                     </>
                 )}
-                <button className="border rounded-md p-2">Submit</button>
+                {index === steps.length - 1 && (
+                    <button className="border rounded-md p-2 bg-orange-300 ">
+                        Submit
+                    </button>
+                )}
             </div>
-        </div>
+        </form>
     );
 };
 
