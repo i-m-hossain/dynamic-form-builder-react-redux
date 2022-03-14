@@ -11,7 +11,10 @@ const Preview = () => {
         watch,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        console.log(data);
+        alert("Your feedback is recorded!");
+    };
     const handleNextStep = (e) => {
         e.preventDefault();
         setIndex((state) => state + 1);
