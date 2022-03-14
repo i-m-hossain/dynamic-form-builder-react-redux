@@ -31,7 +31,9 @@ const Form = () => {
                     >
                         {steps.length !== 1 && (
                             <div className="flex justify-between items-center px-4 bg-purple-400 p-2 rounded-md">
-                                <h4>Step {index + 1}</h4>
+                                <h4>
+                                    Step {index + 1} of {steps.length}
+                                </h4>
                                 {index !== 0 && (
                                     <button
                                         className="text-2xl text-red-400 bg-slate-100 rounded-full p-1"

@@ -13,7 +13,7 @@ const Navbar = () => {
                             Create Form
                         </Link>
                         <Link
-                            to="/preview"
+                            to="/preview/step"
                             className="mr-5 hover:text-gray-900"
                         >
                             Preview
